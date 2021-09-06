@@ -13,7 +13,7 @@ public struct CocoaScrollViewProxy: Hashable {
     
     @ReferenceBox var onBaseChange: (() -> Void)? = nil
     
-    var base: _opaque_UIHostingScrollView? {
+    public var base: UIScrollView? {
         get {
             _baseBox.value as? _opaque_UIHostingScrollView
         } set {
@@ -28,7 +28,7 @@ public struct CocoaScrollViewProxy: Hashable {
     }
     
     public func scrollTo(_ edge: Edge) {
-        base?.scrollTo(edge)
+        (base as? _opaque_UIHostingScrollView)?.scrollTo(edge)
     }
     
     public func hash(into hasher: inout Hasher) {
